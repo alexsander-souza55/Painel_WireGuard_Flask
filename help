@@ -1,0 +1,63 @@
+🚀 Como Executar
+Clone o repositório:
+
+bash
+Copiar
+Editar
+git clone https://github.com/seu-usuario/painel-wireguard.git
+cd painel-wireguard
+
+
+Instale as dependências:
+
+bash
+Copiar
+Editar
+pip install flask
+Inicie o aplicativo:
+
+bash
+Copiar
+Editar
+python app.py
+Acesse no navegador:
+
+cpp
+Copiar
+Editar
+http://127.0.0.1:5000
+🔐 Usuário e Senha
+Os usuários são armazenados no arquivo users.json. Exemplo:
+
+json
+Copiar
+Editar
+{
+  "admin": "admin123"
+}
+Para adicionar mais usuários, edite manualmente o arquivo.
+
+🧩 Geração de Configuração MikroTik
+Acesse a rota /config-mk e selecione um cliente. O painel exibe automaticamente a configuração compatível com MikroTik pronta para copiar e colar, com base nos dados armazenados.
+
+Exemplo gerado:
+
+kotlin
+Copiar
+Editar
+/interface wireguard peers add allowed-address=10.0.0.2/32 endpoint-address=seu.dns.com endpoint-port=51820 public-key=chaveDoCliente
+📡 Status do WireGuard
+Na aba “Status”, é exibida a saída do comando:
+
+bash
+Copiar
+Editar
+bash wg_helper.sh
+Esse script deve estar configurado para rodar wg show ou comandos equivalentes.
+
+⚠️ Observações
+Não usa banco de dados. Toda persistência é feita via arquivos JSON.
+
+O script bash deve ter permissão de execução (chmod +x wg_helper.sh).
+
+Para produção, use um servidor WSGI como Gunicorn e configure autenticação segura.
